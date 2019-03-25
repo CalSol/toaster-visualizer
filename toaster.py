@@ -10,12 +10,14 @@ SERIAL_PATH = 'COM6'
 SERIAL_BAUD = 115200
 
 ELEMENT_COUNT = 8
-WINDOW = 60 * 60
+WINDOW = 60 * 60  # in seconds
 
 OUT_PREFIX = "toaster_"
 
 TEXT_ALPHA = 0.75
 
+
+# for testing only
 TEST_LINE = "0: 73 2: 79 3: 80 4: 75 5: 81 6: 80 7: 82"
 
 if __name__ == "__main__":
