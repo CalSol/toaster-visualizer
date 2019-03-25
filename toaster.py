@@ -24,8 +24,8 @@ if __name__ == "__main__":
   start_time = datetime.datetime.now()
   out_filename = OUT_PREFIX + start_time.strftime("%Y%m%d_%H%M%S") + ".csv"
 
-  with serial.Serial(SERIAL_PATH, SERIAL_BAUD) as ser, open(out_filename, 'w', newline='') as csv_out:
-  # with open(out_filename, 'w', newline='') as csv_out:
+  # with serial.Serial(SERIAL_PATH, SERIAL_BAUD) as ser, open(out_filename, 'w', newline='') as csv_out:
+  with open(out_filename, 'w', newline='') as csv_out:
     csvwriter = csv.writer(csv_out)
     csvwriter.writerow(['timestamp'] + list(range(0, ELEMENT_COUNT)))
 
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     plt.draw()
 
     while True:
-      line = ser.readline()
+      line = ser.readline().decode('utf-8')
       # line = TEST_LINE
       line_time = datetime.datetime.now()
       delta_time = line_time.timestamp() - start_time.timestamp()
