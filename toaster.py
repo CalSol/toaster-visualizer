@@ -94,8 +94,8 @@ if __name__ == "__main__":
         avg_text.set_text("avg(%s): %.1f, spd: %.1f" % (len(match_vals), avg, match_vals[-1] - match_vals[0]))
 
         ax.legend(loc=2)  # upper left
-        ax.set_xlim(delta_time - WINDOW,  delta_time)
+        ax.set_xlim(delta_time - WINDOW,  delta_time + 10)
         ax.set_ylim(0, 100)
 
         plt.draw()
-        plt.pause(1)
+        plt.pause(0.01)
