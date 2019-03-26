@@ -24,8 +24,8 @@ if __name__ == "__main__":
   start_time = datetime.datetime.now()
   out_filename = OUT_PREFIX + start_time.strftime("%Y%m%d_%H%M%S") + ".csv"
 
-  # with serial.Serial(SERIAL_PATH, SERIAL_BAUD) as ser, open(out_filename, 'w', newline='') as csv_out:
-  with open(out_filename, 'w', newline='') as csv_out:
+  with serial.Serial(SERIAL_PATH, SERIAL_BAUD) as ser, open(out_filename, 'w', newline='') as csv_out:
+  # with open(out_filename, 'w', newline='') as csv_out:
     csvwriter = csv.writer(csv_out)
     csvwriter.writerow(['timestamp'] + list(range(0, ELEMENT_COUNT)))
 
@@ -47,6 +47,7 @@ if __name__ == "__main__":
     while True:
       line = ser.readline().decode('utf-8')
       # line = TEST_LINE
+      
       line_time = datetime.datetime.now()
       delta_time = line_time.timestamp() - start_time.timestamp()
       print("[%s] received: %s" % (line_time.strftime("%H:%M:%S"), line))
@@ -81,7 +82,7 @@ if __name__ == "__main__":
 
         match_rev = list(map(lambda x: (x[1], x[0]), match))
         match_rev.sort()
-        match_vals = list(map(lambda x: x[1], match))
+        match_vals = list(map(lambda x: x[0], match_rev))
         avg = sum(match_vals)/len(match_vals)
         min_text.set_x(delta_time)
         max_text.set_x(delta_time)
